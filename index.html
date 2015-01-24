@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
       body {
-        margin: 0px;
+        margin: 0;
         overflow: hidden;
       }
       #example {
@@ -50,8 +50,8 @@
     function Particle() {
         const pointCloudSize = 5;
         const spread = 3;
-        const pos1 = { x: -1000, z : -300 }
-        const pos2 = { x: 400, z : -900 }
+        const pos1 = { x: -1000, z : -300 };
+        const pos2 = { x: 400, z : -900 };
 
         var particle = new THREE.Vector3();
 
@@ -81,7 +81,7 @@
 
       scene = new THREE.Scene();
 
-      camera = new THREE.PerspectiveCamera(90, 1, 0.1, 1000);
+      camera = new THREE.PerspectiveCamera(90, 1, 0.1, 1500);
       camera.position.set(0, 2, 0);
       scene.add(camera);
 
@@ -127,24 +127,8 @@
       texture.repeat = new THREE.Vector2(50, 50);
       texture.anisotropy = renderer.getMaxAnisotropy();
 
-      var material = new THREE.MeshPhongMaterial({
-        color: 0xffffff,
-        specular: 0xffffff,
-        shininess: 20,
-        shading: THREE.FlatShading,
-        map: texture
-      });
-
-      var geometry = new THREE.PlaneGeometry(1000, 1000);
-
-      var mesh = new THREE.Mesh(geometry, material);
-      mesh.rotation.x = -Math.PI / 2;
-//      scene.add(mesh);
-
-
         var geometry = new THREE.SphereGeometry( 5, 32, 32 );
         var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-        var sphere = new THREE.Mesh( geometry, material );
         var textMaterial = new THREE.MeshLambertMaterial( { color: 0xdd3377, shading: THREE.SmoothShading }  );
 
         var distance = 400;
@@ -172,8 +156,8 @@
         text = new THREE.Mesh(thirty , textMaterial );
 
         text.position.x = -distance * 1.5;
-        text.position.y = 200;
-        text.position.z = -distance;
+        text.position.y = 300;
+        text.position.z = -distance * 1.5;
         text.rotation.y = Math.PI / 8;
 
         scene.add(text);
@@ -218,7 +202,7 @@
       setTimeout(resize, 1);
     }
 
-    function updateParticles(dt) {
+    function updateParticles() {
         particles.vertices.forEach(function(particle){
             if (particle.y < -200) {
                 particle.reset();
